@@ -4,15 +4,7 @@ context('Login', () => {
     });
 
     it('Efetuar login', () => {
-        cy.get('#input')
-            .type('desenvolvimento2.criciuma@maxipas.com.br')
-            .should('have.value', 'desenvolvimento2.criciuma@maxipas.com.br');
-
-        cy.get('.password-container > .login-input > .p-inputtext')
-            .type('123456')
-            .should('have.value', '123456');
-
-        cy.get('.p-button').click();
+        login(cy, 'desenvolvimento2.criciuma@maxipas.com.br', '123456');
 
         cy.get('.layout-profile-role').should('have.text', 'Administrador');
     });

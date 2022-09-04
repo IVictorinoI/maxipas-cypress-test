@@ -1,23 +1,30 @@
+import { login } from '../../util/auth';
+
 context('Login', () => {
     beforeEach(() => {
         cy.visit('https://app.dev.softwaresst.com.br/#/grupos/list');
+
+        login(cy, 'desenvolvimento2.criciuma@maxipas.com.br', '123456');
     });
 
     it('Listar e cadastrar grupos', () => {
-        cy.get('#input')
-            .type('desenvolvimento2.criciuma@maxipas.com.br')
-            .should('have.value', 'desenvolvimento2.criciuma@maxipas.com.br');
+        const descricao = 'Teste CYPRESS';
 
-        cy.get('.password-container > .login-input > .p-inputtext')
-            .type('123456')
-            .should('have.value', '123456');
-
-        cy.get('.p-button').click();
-
-        cy.get('.ml-auto > .p-button').click();
-
-        cy.get('#descricao').type('Teste CYPRESS').should('have.value', 'Teste CYPRESS');
-
-        cy.get('.p-button-primary > .p-button-label').click();
+        //cadastrar(descricao);
+        cy.wait(5000)
+        pesquisar(descricao);
     });
 });
+
+function pesquisar(texto) {
+    cy.get('.p-chips-input-token > input').type(texto+'{enter}');
+    cy.get('.p-selectable-row > :nth-child(2)').should('have.text', 'Descrição'+texto)
+}
+
+function cadastrar(descricao) {
+    cy.get('.ml-auto > .p-button').click();
+
+    cy.get('#descricao').type('Teste CYPRESS').should('have.value', 'Teste CYPRESS');
+
+    cy.get('.p-button-primary > .p-button-label').click();
+}
