@@ -1,3 +1,5 @@
+import { login } from '../../util/auth';
+
 context('Login', () => {
     beforeEach(() => {
         cy.visit('https://app.dev.softwaresst.com.br/#/login');

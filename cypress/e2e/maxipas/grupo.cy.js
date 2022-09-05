@@ -2,20 +2,20 @@ import { login } from '../../util/auth';
 
 context('Login', () => {
     beforeEach(() => {
-        cy.visit('https://app.dev.softwaresst.com.br/#/grupos/list');
+        cy.visit('https://app.dev.softwaresst.com.br/#/position/list');
 
         login(cy, 'desenvolvimento2.criciuma@maxipas.com.br', '123456');
     });
 
     it('Listar e cadastrar grupos', () => {
-        //const descricao = 'Teste CYPRESS '+new Date().toLocaleString();
-        const descricao = 'Teste CYPRESS';
+        const descricao = 'Teste CYPRESS '+new Date().toLocaleString();
+        //const descricao = 'Teste CYPRESS';
 
-        //cadastrar(descricao);
+        cadastrar(descricao);
 
         pesquisar(descricao);
         
-        excluir(descricao);
+        //excluir(descricao);
     });
 });
 
